@@ -2,7 +2,7 @@ package exercicio03;
 
 import java.util.Scanner;
 
-//Faça um programa para ler o valor do raio de um círculo, e depois mostrar o valor da área deste círculo com quatro
+// um programa para ler o valor do raio de um círculo, e depois mostrar o valor da área deste círculo com quatro
 //casas decimais conforme exemplos.
 //
 //Fórmula da área: area = π . raio2
