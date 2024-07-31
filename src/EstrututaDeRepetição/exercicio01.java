@@ -9,7 +9,6 @@ public class exercicio01 {
         int x = sc.nextInt();
         int soma = sc.nextInt();
         while (x != 0) {
-            ( )
             x = sc.nextInt();
 
         }
