@@ -3,21 +3,20 @@ package org.example.ComposicaoDeObjeto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Calendar;
-import java.util.Date;  // Esta linha deve estar no início da classe Trabalhador
-
+import java.util.Date;
 
 public class Trabalhador {
 
     private String nome;
-    private String nivelTrabalhador; // Corrigido para seguir a convenção camelCase
-    private double baseSalario; // Corrigido para seguir a convenção camelCase
+    private TipoEnumerado nivelTrabalhador; // Usando enum em vez de String
+    private double baseSalario;
 
     // Associações
-    private Departamento departamento; // Renomeado para 'departamento' para clareza
-    private List<ContratoPorHora> contratos = new ArrayList<>(); // Para ter a lista de contratos
+    private Departamento departamento;
+    private List<ContratoPorHora> contratos = new ArrayList<>();
 
     // Construtor
-    public Trabalhador(String nome, String nivelTrabalhador, double baseSalario, Departamento departamento) {
+    public Trabalhador(String nome, TipoEnumerado nivelTrabalhador, double baseSalario, Departamento departamento) {
         this.nome = nome;
         this.nivelTrabalhador = nivelTrabalhador;
         this.baseSalario = baseSalario;
@@ -33,11 +32,11 @@ public class Trabalhador {
         this.nome = nome;
     }
 
-    public String getNivelTrabalhador() {
+    public TipoEnumerado getNivelTrabalhador() {
         return nivelTrabalhador;
     }
 
-    public void setNivelTrabalhador(String nivelTrabalhador) {
+    public void setNivelTrabalhador(TipoEnumerado nivelTrabalhador) {
         this.nivelTrabalhador = nivelTrabalhador;
     }
 
@@ -71,25 +70,22 @@ public class Trabalhador {
     }
 
     public double income(int ano, int mes) {
-        double sum = baseSalario; // Começa com o salário base
+        double sum = baseSalario;
 
         // Itera sobre os contratos
         for (ContratoPorHora c : contratos) {
-            // Obtém a data do contrato
             Date contratoDate = c.getDate();
-
-            // Usa o Calendar para extrair ano e mês da data do contrato
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(contratoDate);
             int c_ano = calendar.get(Calendar.YEAR);
-            int c_mes = calendar.get(Calendar.MONTH) + 1; // Janeiro é 0, então somamos 1
+            int c_mes = calendar.get(Calendar.MONTH) + 1;
 
             // Verifica se o contrato é do ano e mês especificados
             if (c_ano == ano && c_mes == mes) {
-                sum += c.totalHora(); // Adiciona o total ganho com o contrato ao total
+                sum += c.totalHora();
             }
         }
 
-        return sum; // Retorna o total
+        return sum;
     }
 }
